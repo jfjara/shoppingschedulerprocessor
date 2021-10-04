@@ -17,5 +17,7 @@ It needs he ShoppingGenerator project running, and install a module in maven rep
 - Spring Boot 2.5.5
 - MapStruct
 - RestTemplate
+- Hexagonal Architecture
+- TDD and BDD
 
 
