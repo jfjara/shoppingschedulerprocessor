@@ -1,0 +1,10 @@
+server:
+  port: 8080
+
+api:
+  host: http://localhost:8081
+  path:
+    shoppings:
+      get: /shopping
+
+cron: '*/10 * * * * ?'
