@@ -22,12 +22,12 @@ public class CustomShoppingCacheRepository implements CacheRepository<String, Sh
     }
 
     private void add(final List<ShoppingDTO> list) {
-        list.stream().forEach(e -> add(e.getId(), Optional.of(e)));
+        list.stream().forEach(e -> add(e.getId(), e));
     }
 
     @Override
-    public void add(String key, final Optional<ShoppingDTO> element) {
-        element.ifPresent(e -> cache.put(key, e));
+    public void add(String key, ShoppingDTO element) {
+        cache.put(key, element);
     }
 
     @Override
@@ -37,6 +37,6 @@ public class CustomShoppingCacheRepository implements CacheRepository<String, Sh
                 !cache.containsKey(key)) {
             return Optional.empty();
         }
-        return Optional.of(cache.get(key));
+        return Optional.ofNullable(cache.get(key));
     }
 }

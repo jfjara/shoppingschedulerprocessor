@@ -24,7 +24,7 @@ public class CustomShoppingCacheRepositoryTest {
     @Test
     public void test_add_elements_and_recovery() {
         ShoppingDTO shoppingLuisGarcia = DTOGenerator.createShoppingLuisGarcia();
-        cacheRepository.add(shoppingLuisGarcia.getId(), Optional.of(shoppingLuisGarcia));
+        cacheRepository.add(shoppingLuisGarcia.getId(), shoppingLuisGarcia);
         Optional<ShoppingDTO> shoppingRecovered = cacheRepository.get(shoppingLuisGarcia.getId());
         Assert.assertNotNull(shoppingRecovered);
         Assert.assertTrue(shoppingRecovered.isPresent());
@@ -33,7 +33,7 @@ public class CustomShoppingCacheRepositoryTest {
 
     @Test
     public void test_add_empty_element() {
-        cacheRepository.add("-1", Optional.empty());
+        cacheRepository.add("-1", null);
         Optional<ShoppingDTO> shoppingRecovered = cacheRepository.get("-1");
         Assert.assertNotNull(shoppingRecovered);
         Assert.assertTrue(shoppingRecovered.isEmpty());
@@ -49,7 +49,7 @@ public class CustomShoppingCacheRepositoryTest {
     @Test
     public void test_add_repeat_element() {
         ShoppingDTO shoppingLuisGarcia = DTOGenerator.createShoppingLuisGarcia();
-        cacheRepository.add(shoppingLuisGarcia.getId(), Optional.of(shoppingLuisGarcia));
+        cacheRepository.add(shoppingLuisGarcia.getId(), shoppingLuisGarcia);
         Optional<ShoppingDTO> shoppingRecovered = cacheRepository.get(shoppingLuisGarcia.getId());
         Assert.assertNotNull(shoppingRecovered);
         Assert.assertTrue(shoppingRecovered.isPresent());
@@ -57,7 +57,7 @@ public class CustomShoppingCacheRepositoryTest {
         Assert.assertEquals(80, shoppingRecovered.get().getTotalPrice().intValue());
 
         ShoppingDTO shoppingLuisGarcia2 = DTOGenerator.createShoppingLuisGarcia2();
-        cacheRepository.add(shoppingLuisGarcia2.getId(), Optional.of(shoppingLuisGarcia2));
+        cacheRepository.add(shoppingLuisGarcia2.getId(), shoppingLuisGarcia2);
         Optional<ShoppingDTO> shoppingRecovered2 = cacheRepository.get(shoppingLuisGarcia2.getId());
         Assert.assertNotNull(shoppingRecovered2);
         Assert.assertTrue(shoppingRecovered2.isPresent());
